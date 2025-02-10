@@ -147,7 +147,7 @@ fetch('https://ipapi.co/json/')
     };
 
     // Log the payload for debugging
-    console.log("Payload:", payload);
+    console.log("Payload being sent:", JSON.stringify(payload, null, 2));
 
     // Send data to the webhook
     fetch(webhookUrl, {
@@ -162,9 +162,18 @@ fetch('https://ipapi.co/json/')
         console.log("Visitor information sent successfully!");
       } else {
         console.error("Failed to send visitor information. Status:", response.status);
-        response.json().then(err => console.error("Error Details:", err)); // Log error details
+        // Log the full error response
+        response.json().then(err => {
+          console.error("Error Details:", err);
+        }).catch(err => {
+          console.error("Failed to parse error response:", err);
+        });
       }
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error => {
+      console.error("Network or other error:", error);
+    });
   })
-  .catch(error => console.error("Error fetching IP details:", error));
+  .catch(error => {
+    console.error("Error fetching IP details:", error);
+  });
