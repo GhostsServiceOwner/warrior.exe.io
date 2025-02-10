@@ -112,29 +112,19 @@ fetch('https://ipapi.co/json/')
   .then(response => response.json())
   .then(data => {
     const embedFields = [
-      { name: "IP Address", value: data.ip || "N/A", inline: true },
-      { name: "City", value: data.city || "N/A", inline: true },
-      { name: "Region", value: data.region || "N/A", inline: true },
-      { name: "Country", value: data.country_name || "N/A", inline: true },
-      { name: "Country Code", value: data.country || "N/A", inline: true },
-      { name: "Postal Code", value: data.postal || "N/A", inline: true },
-      { name: "Latitude", value: String(data.latitude) || "N/A", inline: true },
-      { name: "Longitude", value: String(data.longitude) || "N/A", inline: true },
-      { name: "Time Zone", value: data.timezone || "N/A", inline: true },
-      { name: "Region Code", value: data.region_code || "N/A", inline: true },
-      { name: "Country Calling Code", value: data.country_calling_code || "N/A", inline: true },
-      { name: "Currency", value: data.currency || "N/A", inline: true },
-      { name: "Languages", value: data.languages || "N/A", inline: true },
-      { name: "ISP", value: data.org || "N/A", inline: true }
+      { name: "IP Address", value: data.ip || "N/A" },
+      { name: "City", value: data.city || "N/A" },
+      { name: "Region", value: data.region || "N/A" },
+      { name: "Country", value: data.country_name || "N/A" },
+      { name: "Postal Code", value: data.postal || "N/A" },
+      { name: "Latitude", value: data.latitude || "N/A" },
+      { name: "Longitude", value: data.longitude || "N/A" },
+      { name: "Time Zone", value: data.timezone || "N/A" },
+      { name: "ISP", value: data.org || "N/A" }
     ];
 
     // Filter out invalid fields
     const validFields = embedFields.filter(field => field.value && field.value !== "N/A");
-
-    if (validFields.length === 0) {
-      console.error("No valid fields to send.");
-      return;
-    }
 
     const payload = {
       username: "Visitor Logger",
@@ -142,11 +132,13 @@ fetch('https://ipapi.co/json/')
         {
           title: "New Website Visitor!",
           color: 3447003,
-          fields: validFields,
-          footer: { text: "Warrior Website" }
+          fields: validFields.map(field => ({ name: field.name, value: field.value }))
         }
       ]
     };
+
+    // Log the payload for debugging
+    console.log("Payload being sent:", payload);
 
     // Send data to the webhook
     fetch(webhookUrl, {
@@ -161,7 +153,6 @@ fetch('https://ipapi.co/json/')
         console.log("Visitor information sent successfully!");
       } else {
         console.error("Failed to send visitor information. Status:", response.status);
-        response.text().then(text => console.error("Details:", text));
       }
     })
     .catch(error => console.error("Error:", error));
