@@ -105,40 +105,28 @@ gsap.from('.contact-form', {
 });
 
 // IP Logger and Webhook Integration
-const webhookUrl = "https://discord.com/api/webhooks/1338605129938501742/BzbZgA6Sxjjn4kDwNVQEE1L6r08rDBjguO3megjhvVQtZCdANUEpmW299Vgp1dQU9r2a";
+const webhookUrl = "https://discord.com/api/webhooks/YOUR-WEBHOOK-URL";
 
 // Fetch IP and location details
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
   .then(data => {
-    const embedFields = [
-      { name: "IP Address", value: data.ip || "N/A" },
-      { name: "City", value: data.city || "N/A" },
-      { name: "Region", value: data.region || "N/A" },
-      { name: "Country", value: data.country_name || "N/A" },
-      { name: "Postal Code", value: data.postal || "N/A" },
-      { name: "Latitude", value: data.latitude || "N/A" },
-      { name: "Longitude", value: data.longitude || "N/A" },
-      { name: "Time Zone", value: data.timezone || "N/A" },
-      { name: "ISP", value: data.org || "N/A" }
-    ];
-
-    // Filter out invalid fields
-    const validFields = embedFields.filter(field => field.value && field.value !== "N/A");
-
     const payload = {
       username: "Visitor Logger",
       embeds: [
         {
           title: "New Website Visitor!",
           color: 3447003,
-          fields: validFields.map(field => ({ name: field.name, value: field.value }))
+          fields: [
+            { name: "IP Address", value: data.ip, inline: true },
+            { name: "City", value: data.city || "Unknown", inline: true },
+            { name: "Country", value: data.country_name || "Unknown", inline: true },
+            { name: "ISP", value: data.org || "Unknown", inline: true },
+          ],
+          footer: { text: "Warrior Website" }
         }
       ]
     };
-
-    // Log the payload for debugging
-    console.log("Payload being sent:", payload);
 
     // Send data to the webhook
     fetch(webhookUrl, {
@@ -152,7 +140,7 @@ fetch('https://ipapi.co/json/')
       if (response.ok) {
         console.log("Visitor information sent successfully!");
       } else {
-        console.error("Failed to send visitor information. Status:", response.status);
+        console.error("Failed to send visitor information.");
       }
     })
     .catch(error => console.error("Error:", error));
