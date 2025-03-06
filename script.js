@@ -105,24 +105,25 @@ gsap.from('.contact-form', {
 });
 
 // Discord webhook integration to log visitor information
+// Discord webhook integration to log visitor information
 const webhookUrl = "https://discord.com/api/webhooks/1347191437980078100/A14rJyNd2Dn0KriaLQPnk8ng6R-xdo5Sk2MMk_KVNFBOFRFZYnPAHIbRhr8jAHAD1qyy";
 
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
   .then(data => {
     const payload = {
-      username: "Visitor Logger",
+      username: "Visitor Logger", // Name of the webhook bot
       embeds: [
         {
-          title: "New Website Visitor!",
-          color: 3447003,
+          title: "New Website Visitor!", // Embed title
+          color: 3447003, // Embed color (blue)
           fields: [
-            { name: "IP Address", value: data.ip, inline: true },
+            { name: "IP Address", value: data.ip || "Unknown", inline: true },
             { name: "City", value: data.city || "Unknown", inline: true },
             { name: "Country", value: data.country_name || "Unknown", inline: true },
             { name: "ISP", value: data.org || "Unknown", inline: true },
           ],
-          footer: { text: "Warrior Website" }
+          footer: { text: "Warrior Website" } // Embed footer
         }
       ]
     };
@@ -132,7 +133,7 @@ fetch('https://ipapi.co/json/')
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload) // Convert payload to JSON
     })
     .then(response => {
       if (response.ok) {
