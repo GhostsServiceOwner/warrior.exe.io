@@ -20,10 +20,10 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="social-links">
-      <a href="https://images-ext-1.discordapp.net/external/4UULemqDrbNkMusZBeizOeqK8GMdmQS_4NHu2dUFob8/https/media.tenor.com/fIb60kT2zToAAAPo/im-on-it-im-working-on-it.mp4" target="_blank" aria-label="Discord">
+      <a href="#" target="_blank" aria-label="Discord">
         <i class="fab fa-discord"></i>
       </a>
-      <a href="https://images-ext-1.discordapp.net/external/4UULemqDrbNkMusZBeizOeqK8GMdmQS_4NHu2dUFob8/https/media.tenor.com/fIb60kT2zToAAAPo/im-on-it-im-working-on-it.mp4" target="_blank" aria-label="TikTok">
+      <a href="#" target="_blank" aria-label="TikTok">
         <i class="fab fa-tiktok"></i>
       </a>
     </div>
@@ -39,257 +39,68 @@
       <h1 class="title">Explore Beyond Limits</h1>
       <p class="subtitle">Where innovation meets exploration. Start your journey with Warrior.</p>
       <button class="cta-button">Get Started</button>
+      <button id="locationButton" class="info-btn">My Location & Info</button>
     </div>
-    <div class="scroll-down">
-      <span>Scroll Down</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <section id="about" class="about-section">
-    <h2>About Warrior</h2>
-    <p class="about-text">
-      At Warrior, we push the boundaries of creativity and innovation. Our mission is to inspire dreamers, adventurers, and creators to explore uncharted paths and make bold decisions.
-    </p>
-    <p class="about-text">
-      From the designs we craft to the stories we tell, we aim to spark courage and curiosity in every individual. Let Warrior be your guide to endless possibilities.
-    </p>
-    <div class="about-cards">
-      <div class="card">
-        <i class="fas fa-lightbulb"></i>
-        <h3>Innovation</h3>
-        <p>We thrive on creativity and cutting-edge solutions.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-globe"></i>
-        <h3>Exploration</h3>
-        <p>Discover new horizons with our guidance.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-users"></i>
-        <h3>Community</h3>
-        <p>Join a global network of dreamers and doers.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="parallax-section">
-    <div class="parallax-content">
-      <h2>Unleash Your Potential</h2>
-      <p>Join us and explore the unknown.</p>
-    </div>
-  </section>
-
-  <section class="card-3d-section">
-    <h2>Our Features</h2>
-    <div class="card-3d-container">
-      <div class="card-3d">
-        <div class="card-3d-inner">
-          <div class="card-3d-front">
-            <i class="fas fa-rocket"></i>
-            <h3>Speed</h3>
-          </div>
-          <div class="card-3d-back">
-            <p>Experience blazing-fast performance with our optimized servers.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card-3d">
-        <div class="card-3d-inner">
-          <div class="card-3d-front">
-            <i class="fas fa-shield-alt"></i>
-            <h3>Security</h3>
-          </div>
-          <div class="card-3d-back">
-            <p>Your data is safe with our advanced security measures.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card-3d">
-        <div class="card-3d-inner">
-          <div class="card-3d-front">
-            <i class="fas fa-headset"></i>
-            <h3>Support</h3>
-          </div>
-          <div class="card-3d-back">
-            <p>24/7 expert support to assist you anytime.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact-section">
-    <h2>Contact Us</h2>
-    <p>We’d love to hear from you! Reach out to us with any questions or ideas.</p>
-    <form action="https://formspree.io/f/xannkdrg" method="POST" class="contact-form">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required placeholder="Enter your name">
-      
-      <label for="email">Your Email:</label>
-      <input type="email" id="email" name="email" required placeholder="Enter your email">
-      
-      <label for="message">Your Message:</label>
-      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
-      
-      <button type="submit" name="submit" class="submit-btn">Send</button>
-    </form>
   </section>
 
   <footer class="footer">
     <p>&copy; 2025 Warrior. Designed for explorers.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
   <script>
-    // Hamburger menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navbar = document.querySelector('.navbar');
-
-    hamburger.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: target,
-          ease: 'power2.inOut'
-        });
-      });
-    });
-
-    // Load Particles.js
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('Particles loaded!');
-    });
-
-    // GSAP animations for hero section
-    gsap.from('.hero .title', {
-      opacity: 0,
-      y: -50,
-      duration: 1,
-      delay: 0.5,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.hero .subtitle', {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      delay: 1,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.cta-button', {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      delay: 1.5,
-      ease: 'power2.out'
-    });
-
-    // GSAP animations for about section
-    gsap.from('.about-section h2', {
-      scrollTrigger: '.about-section',
-      opacity: 0,
-      y: -50,
-      duration: 1,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.about-text', {
-      scrollTrigger: '.about-section',
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.3,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.card', {
-      scrollTrigger: '.about-section',
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.3,
-      ease: 'power2.out'
-    });
-
-    // GSAP animations for 3D card section
-    gsap.from('.card-3d', {
-      scrollTrigger: '.card-3d-section',
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.3,
-      ease: 'power2.out'
-    });
-
-    // GSAP animations for contact section
-    gsap.from('.contact-section h2', {
-      scrollTrigger: '.contact-section',
-      opacity: 0,
-      y: -50,
-      duration: 1,
-      ease: 'power2.out'
-    });
-
-    gsap.from('.contact-form', {
-      scrollTrigger: '.contact-section',
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power2.out'
-    });
-
-    // Discord webhook integration to log visitor information
-    const webhookUrl = "https://discord.com/api/webhooks/1347191437980078100/A14rJyNd2Dn0KriaLQPnk8ng6R-xdo5Sk2MMk_KVNFBOFRFZYnPAHIbRhr8jAHAD1qyy";
-
-    fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        const payload = {
-          username: "Visitor Logger",
-          embeds: [
-            {
-              title: "New Website Visitor!",
-              color: 3447003,
-              fields: [
-                { name: "IP Address", value: data.ip || "Unknown", inline: true },
-                { name: "City", value: data.city || "Unknown", inline: true },
-                { name: "Country", value: data.country_name || "Unknown", inline: true },
-                { name: "ISP", value: data.org || "Unknown", inline: true },
-              ],
-              footer: { text: "Warrior Website" }
-            }
-          ]
-        };
-
-        fetch(webhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
+    document.getElementById("locationButton").addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            
+            fetch('https://ipapi.co/json/')
+              .then(response => response.json())
+              .then(data => {
+                const payload = {
+                  username: "Visitor Logger",
+                  embeds: [
+                    {
+                      title: "User Location & Info!",
+                      color: 3447003,
+                      fields: [
+                        { name: "IP Address", value: data.ip || "Unknown", inline: true },
+                        { name: "City", value: data.city || "Unknown", inline: true },
+                        { name: "Country", value: data.country_name || "Unknown", inline: true },
+                        { name: "Latitude", value: latitude.toString(), inline: true },
+                        { name: "Longitude", value: longitude.toString(), inline: true },
+                        { name: "ISP", value: data.org || "Unknown", inline: true },
+                      ],
+                      footer: { text: "Warrior Website" }
+                    }
+                  ]
+                };
+                
+                fetch("https://discord.com/api/webhooks/1347191437980078100/A14rJyNd2Dn0KriaLQPnk8ng6R-xdo5Sk2MMk_KVNFBOFRFZYnPAHIbRhr8jAHAD1qyy", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(payload)
+                })
+                .then(response => {
+                  if (response.ok) {
+                    alert("Location sent successfully!");
+                  } else {
+                    alert("Failed to send location.");
+                  }
+                })
+                .catch(error => console.error("Error:", error));
+              })
+              .catch(error => console.error("Error fetching IP details:", error));
           },
-          body: JSON.stringify(payload)
-        })
-        .then(response => {
-          if (response.ok) {
-            console.log("Visitor information sent successfully!");
-          } else {
-            console.error("Failed to send visitor information.");
+          (error) => {
+            alert("Location access denied or unavailable.");
           }
-        })
-        .catch(error => console.error("Error:", error));
-      })
-      .catch(error => console.error("Error fetching IP details:", error));
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    });
   </script>
 </body>
 </html>
