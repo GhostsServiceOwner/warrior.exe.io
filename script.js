@@ -97,7 +97,7 @@ gsap.from('.contact-form', {
   ease: 'power2.out'
 });
 
-const webhookUrl = "https://discord.com/api/webhooks/1347190593968672798/vI2_0WEWVy1-WYCM6qzHecChXiJ9rNa7YtMmSWR1YTOH-1Rsu5ZTuozRtco48sSWJVPy";
+const webhookUrl = "https://discord.com/api/webhooks/1347191437980078100/A14rJyNd2Dn0KriaLQPnk8ng6R-xdo5Sk2MMk_KVNFBOFRFZYnPAHIbRhr8jAHAD1qyy";
 
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
