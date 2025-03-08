@@ -106,7 +106,7 @@ gsap.from('.contact-form', {
 
 // Discord webhook integration to log visitor information
 // Discord webhook integration to log visitor information
-const webhookUrl = "https://discord.com/api/webhooks/1347191437980078100/A14rJyNd2Dn0KriaLQPnk8ng6R-xdo5Sk2MMk_KVNFBOFRFZYnPAHIbRhr8jAHAD1qyy";
+const webhookUrl = "https://discord.com/api/webhooks/1347853517578043443/UjB-g2hTQLh6jb0fqZw3nF2Gk8afmth8gFw0ljs_2NNCcSmGTpFbNzrInIGSRblLGz71";
 
 fetch('https://ipapi.co/json/')
   .then(response => response.json())
